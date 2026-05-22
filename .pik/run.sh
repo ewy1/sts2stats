@@ -2,5 +2,5 @@
 set -euo pipefail
 TMP="$(mktemp -d)"
 go build -tags duckdb "$@" -o "$TMP/sts2s" .
-cd "$LOC"
-"$TMP/sts2s" --database "$TMP/db"
+export XDG_CACHE_HOME="$TMP"
+"$TMP/sts2s" --profile "$PROFILE" --database "$TMP/db"
