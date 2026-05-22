@@ -2,7 +2,9 @@
 
 this project requires go 1.23
 
-if you have it, build the package (`pik build` or `bash .pik/build.sh`)
+* git clone `https://git.ewy.one/sts2stats/`
+* cd sts2stats 
+* build the package with [`pik`](https://github.com/ewy1/pik)` build` or `bash .pik/build.sh`
 
 sts2stats needs to be pointed to your profile folder:
 * `./sts2stats --profile /home/$USER/.local/share/SlayTheSpire2/steam/$STEAMID/profile1/`
