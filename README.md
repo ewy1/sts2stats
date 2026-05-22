@@ -17,6 +17,8 @@ ingesting should take a while and not currently deduplicated so reindexing is en
 
 you can query the data in the duckdb ui during the indexing.
 
+use `--database ":memory:"` to use an in-memory database which should be faster but does not have persistence.
+
 ## build tags
 * sqlite: build with sqlite storage backend instead of duckdb
 * sqlite-wasm: build with sqlite-wasm backend instead of duckdb
