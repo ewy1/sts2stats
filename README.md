@@ -9,6 +9,7 @@ this project requires go 1.23
 sts2stats needs to be pointed to your profile folder:
 * `./sts2stats --profile /home/$USER/.local/share/SlayTheSpire2/steam/$STEAMID/profile1/`
   * substitute your own variables! i don't know your steam id
+  * if `--profile` is not provided, `.` will be used instead
 
 a browser window with the duckdb ui should open.
 
