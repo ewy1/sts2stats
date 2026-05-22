@@ -1,0 +1,10 @@
+SELECT
+    Card,
+    ActIndex + 1 AS Act,
+    Sum(Win) as Wins,
+    Count(*) - Sum(Win) as Losses,
+    ROUND(Wins / Count(*), 2) as Winrate,
+FROM
+    CardChoice
+WHERE
+    Picked = TRUE

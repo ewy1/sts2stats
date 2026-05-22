@@ -14,6 +14,7 @@ type RunStat struct {
 	FloorsClimbed int
 	Abandoned     bool
 	InProgress    bool
+	Character     string
 }
 
 type RoomStat struct {
@@ -21,7 +22,16 @@ type RoomStat struct {
 	Floor int
 }
 
-func NewRunStat(run model.Run) RunStat {
+func NewRunStat(run model.Run, steamid int) RunStat {
+	var player *model.Player
+	for _, p := range run.Players {
+		if p.ID == steamid {
+			player = &p
+		}
+	}
+	if player == nil {
+		player = &run.Players[0]
+	}
 	st := RunStat{
 		Version:       run.BuildID,
 		StartTime:     time.Unix(int64(run.StartTime), 0),
@@ -31,6 +41,7 @@ func NewRunStat(run model.Run) RunStat {
 		Abandoned:     run.WasAbandoned,
 		FloorsClimbed: runLen(run),
 		InProgress:    run.KilledByEncounter != "" || run.KilledByEvent != "" || run.Win != true,
+		Character:     player.Character,
 	}
 	return st
 }

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-go build "$@" .
+go build -ldflags "-s -w" "$@" .

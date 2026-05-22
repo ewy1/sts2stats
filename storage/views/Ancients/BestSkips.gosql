@@ -1,0 +1,17 @@
+SELECT
+    AVG(ActIndex) + 1 AS Act,
+    Character,
+    Key,
+    Sum(Win) as Wins,
+    Count(*) - Sum(Win) as Losses,
+    ROUND(Wins / Count(*), 2) as Winrate,
+FROM
+    AncientChoice
+WHERE
+    Chosen = FALSE
+GROUP BY
+    Character,
+    Key,
+    ActName
+ORDER BY
+    Wins * Winrate DESC

@@ -77,30 +77,32 @@ type RunSave struct {
 			TurnsTaken int    `json:"turns_taken"`
 		} `json:"rooms"`
 	} `json:"map_point_history"`
-	Modifiers    []interface{} `json:"modifiers"`
-	PlatformType string        `json:"platform_type"`
-	Players      []struct {
-		Character string `json:"character"`
-		Deck      []struct {
-			FloorAddedToDeck int    `json:"floor_added_to_deck"`
-			ID               string `json:"id"`
-			Enchantment      struct {
-				Amount int    `json:"amount"`
-				ID     string `json:"id"`
-			} `json:"enchantment,omitempty"`
-		} `json:"deck"`
-		ID                 int           `json:"id"`
-		MaxPotionSlotCount int           `json:"max_potion_slot_count"`
-		Potions            []interface{} `json:"potions"`
-		Relics             []struct {
-			FloorAddedToDeck int    `json:"floor_added_to_deck"`
-			ID               string `json:"id"`
-		} `json:"relics"`
-	} `json:"players"`
-	RunTime       int    `json:"run_time"`
-	SchemaVersion int    `json:"schema_version"`
-	Seed          string `json:"seed"`
-	StartTime     int    `json:"start_time"`
-	WasAbandoned  bool   `json:"was_abandoned"`
-	Win           bool   `json:"win"`
+	Modifiers     []interface{} `json:"modifiers"`
+	PlatformType  string        `json:"platform_type"`
+	Players       []Player      `json:"players"`
+	RunTime       int           `json:"run_time"`
+	SchemaVersion int           `json:"schema_version"`
+	Seed          string        `json:"seed"`
+	StartTime     int           `json:"start_time"`
+	WasAbandoned  bool          `json:"was_abandoned"`
+	Win           bool          `json:"win"`
+}
+
+type Player struct {
+	Character string `json:"character"`
+	Deck      []struct {
+		FloorAddedToDeck int    `json:"floor_added_to_deck"`
+		ID               string `json:"id"`
+		Enchantment      struct {
+			Amount int    `json:"amount"`
+			ID     string `json:"id"`
+		} `json:"enchantment,omitempty"`
+	} `json:"deck"`
+	ID                 int           `json:"id"`
+	MaxPotionSlotCount int           `json:"max_potion_slot_count"`
+	Potions            []interface{} `json:"potions"`
+	Relics             []struct {
+		FloorAddedToDeck int    `json:"floor_added_to_deck"`
+		ID               string `json:"id"`
+	} `json:"relics"`
 }

@@ -50,7 +50,10 @@ func main() {
 		if err != nil {
 			spool.Warn("ui: %v\n", err)
 		}
-		exec.Command("xdg-open", "http://localhost:4213/").Run()
+		err = exec.Command(opener, "http://localhost:4213/").Run()
+		if err != nil {
+			spool.Warn("ui: %v\n", err)
+		}
 	}
 
 	c := make(chan os.Signal, 1)

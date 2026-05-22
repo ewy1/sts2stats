@@ -54,7 +54,12 @@ func Init(items ...any) error {
 		return err
 	}
 
-	return dbmap.CreateTablesIfNotExists()
+	err = dbmap.CreateTablesIfNotExists()
+	if err != nil {
+		return err
+	}
+
+	return SetupViews()
 }
 
 func register(item ...any) error {

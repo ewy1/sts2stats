@@ -1,6 +1,7 @@
 package stats
 
 import (
+	"github.com/spf13/pflag"
 	"sts2stats/model"
 	"sts2stats/spool"
 	"sts2stats/storage"
@@ -36,11 +37,13 @@ var Enrichers = map[string]Enricher{
 	"card choice":    EnrichWrap(EnrichCardChoice),
 }
 
+var SteamId = pflag.IntP("steamid", "s", 0, "steamid to match players to")
+
 func Enrich(run model.Run) error {
 	startTime := time.Now()
 	id := run.RunId[:4]
 	wg := sync.WaitGroup{}
-	st := NewRunStat(run)
+	st := NewRunStat(run, *SteamId)
 	for k, e := range Enrichers {
 		wg.Go(func() {
 			spool.Debug("[%v] Starting %v enrichment\n", id, k)
