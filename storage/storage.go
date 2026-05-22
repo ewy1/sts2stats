@@ -2,6 +2,7 @@ package storage
 
 import (
 	"database/sql"
+	"errors"
 	"github.com/adrg/xdg"
 	"github.com/go-gorp/gorp"
 	"github.com/spf13/pflag"
@@ -15,6 +16,7 @@ var (
 	Cache, CacheErr = xdg.CacheFile("sts2stats/db." + driver)
 	Db              = pflag.String("database", Cache, "file path for database")
 	Reset           = pflag.BoolP("reindex", "r", true, "reindex all runs")
+	Headless        = pflag.BoolP("headless", "h", false, "do not open ui")
 )
 
 var conn *sql.DB
@@ -25,7 +27,7 @@ func Init(items ...any) error {
 	if *Reset {
 		spool.Warn("reindex expected, removing database\n")
 		err := os.Remove(*Db)
-		if err != nil {
+		if err != nil && !errors.Is(err, os.ErrNotExist) {
 			return err
 		}
 	}

@@ -39,11 +39,13 @@ func main() {
 	if err != nil {
 		spool.Panic("%v\n", err)
 	}
-	root := must(os.OpenRoot("."))
+	root := must(os.OpenRoot(*Profile))
 	defer root.Close()
 	go func() { must[any](nil, ingest.AddProfile(root.FS(), 0)) }()
 	must[any](nil, storage.UI())
-	exec.Command("xdg-open", "http://localhost:4213/").Run()
+	if !*storage.Headless {
+		exec.Command("xdg-open", "http://localhost:4213/").Run()
+	}
 
 	c := make(chan os.Signal, 1)
 	go signal.Notify(c, os.Interrupt, os.Kill)
