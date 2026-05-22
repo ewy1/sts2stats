@@ -1,6 +1,6 @@
 # sts2stats
 
-this project requires go 1.23
+this project requires go>=1.23
 
 * git clone `https://git.ewy.one/sts2stats/`
 * cd sts2stats 
