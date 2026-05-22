@@ -42,8 +42,14 @@ func main() {
 	root := must(os.OpenRoot(*Profile))
 	defer root.Close()
 	go func() { must[any](nil, ingest.AddProfile(root.FS(), 0)) }()
-	must[any](nil, storage.UI())
+	if err != nil {
+
+	}
 	if !*storage.Headless {
+		err = storage.UI()
+		if err != nil {
+			spool.Warn("ui: %v\n", err)
+		}
 		exec.Command("xdg-open", "http://localhost:4213/").Run()
 	}
 
