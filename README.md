@@ -15,3 +15,9 @@ a browser window with the duckdb ui should open.
 ingesting should take a while and not currently deduplicated so reindexing is enabled implicitly: every time you start the program the database will be wiped.
 
 you can query the data in the duckdb ui during the indexing.
+
+## build tags
+* sqlite: build with sqlite storage backend instead of duckdb
+* sqlite-wasm: build with sqlite-wasm backend instead of duckdb
+* pprof: build with profiling support
+* api: build with http api
